@@ -1,5 +1,6 @@
 from Note import *
 from Composition import *
+from MetricManager import *
 from GA import *
 import numpy as np
 from random import randrange, uniform
@@ -34,10 +35,5 @@ selectedTrack1 = [C4, G4, A5, A5sh, F4, E5, D4, C4]
 # selectedTrack2 = [E, D, C, D, E, E, D, D]
 # selectedTrack3 = [F, A, D, D, G, E, A, C]
 
-
-print(Note.notesAreConsecutive(A5, A5sh))
-Composition.play(selectedTrack1)
-enhancedTracks = GA().runGA(selectedTrack1)
-firstTrack = enhancedTracks[0]
-for track in enhancedTracks:
-    Composition.play(track)
+times = MetricManager.timeCall(GA().runGA, selectedTrack1, 10, 10)
+MetricManager.writeResultsToCSV("GA_timings_10_iterations_8_notes", times)

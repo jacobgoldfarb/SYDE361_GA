@@ -1,3 +1,4 @@
+
 class Note:
     
     supportedNotes = ['A4', 'A4#', 'B4', 'C4', 'C4#', 'D4', 'D4#', 'E4', 'F4', 'F4#', 'G4', 'G4#'
@@ -48,7 +49,7 @@ class Note:
         newFreq = self.supportedFreqs[noteIndex]
         newNote = self.supportedNotes[noteIndex]
         return Note(newFreq, newNote)
-
+    
     @staticmethod
     def notesAreConsecutive(note1, note2):
         return note1 == note2 + 1 or note2 == note1 + 1
