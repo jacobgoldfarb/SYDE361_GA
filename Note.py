@@ -45,13 +45,12 @@ class Note:
         noteIndex = self.supportedNotes.index(self.letter)
         noteIndex += o
         if len(self.supportedNotes) - 1 < noteIndex:
-            noteIndex -= len(self.supportedNotes)
+            noteIndex = 0
         newFreq = self.supportedFreqs[noteIndex]
         newNote = self.supportedNotes[noteIndex]
         return Note(newFreq, newNote)
     
-    @staticmethod
-    def notesAreConsecutive(note1, note2):
-        return note1 == note2 + 1 or note2 == note1 + 1
+    def __sub__(self, o):
+        return self.supportedNotes.index(self.letter) - self.supportedNotes.index(o.letter)
  
 
