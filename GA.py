@@ -11,14 +11,19 @@ class GA:
         print("Running the genetic algorithm.")
         firstGeneration = [baseTrack] * 8
         mutatedGeneration = self.mutate(firstGeneration, 0.8)
+        highestFitnessComp = baseTrack
+        highestFitnessComp.fitness = 0
         for _ in range(iterations):
             fitnessedGeneration = list(map(self.addFitnessToComposition, mutatedGeneration))
             sortedFitnessedGeneration = self.sortGenerationByFitness(fitnessedGeneration)
+            highestFitnessComp = max(sortedFitnessedGeneration + [highestFitnessComp], key=lambda x: x.getFitness())
             fittestGeneration = self.eliminateUnfitCandidates(sortedFitnessedGeneration)
             mutatedGeneration = self.mutate(fittestGeneration, 0.8)
         finalGen = self.sortGenerationByFitness(fitnessedGeneration)
         print("Done.")
-        return max(finalGen, key=lambda x: x.getFitness())
+        chosenCandidate =  max(finalGen + [highestFitnessComp], key=lambda x: x.getFitness())
+        print(f"Chosen candidate fitness: {chosenCandidate.getFitness()}")
+        return chosenCandidate
 
     def addFitnessToComposition(self, comp):
         compFitness = Fitness.determineFitness(comp)
@@ -33,22 +38,19 @@ class GA:
         mutatedGeneration = []
         for candidate in generation:
             if uniform(0, 1) < mutationProbability: # mutate 80% of this generation
-                mutatedGeneration.append(self.mutateCandidate(candidate))
+                mutatedGeneration.append(self.mutateCandidate(candidate, mutationProbability))
             else: # don't mutate
                 mutatedGeneration.append(candidate)
         return mutatedGeneration
         
-    def mutateCandidate(self, candidate):
+    def mutateCandidate(self, candidate, mutationProbability):
         newNotes = []
         for i, note1 in enumerate(candidate.notes):
             newNote = note1
             for j, note2 in enumerate(candidate.notes):
                 if j >= i:
                     continue
-                # randomly move consecutive notes:
-                if abs(j - i) == 1 and Composition.notesAreConsecutive(note1, note2):
-                    newNote = newNote + randrange(3,6)
-                elif uniform(0,1) < 0.4: # randomly change 40% of notes.
+                if uniform(0,1) < (mutationProbability / 2): # randomly change 40% of notes.
                     newNote += randrange(1,10)
             newNotes.append(newNote)
         return Composition(newNotes)            

@@ -7,8 +7,11 @@ class Fitness:
 
     @staticmethod
     def determineFitness(composition):
-        harmonyScore = Fitness.getHarmonyScore(composition)
-        return harmonyScore
+        harmonyWeight = 0.7
+        continuityWeight = 0.3
+        harmonyScore = Fitness.getHarmonyScore(composition) * harmonyWeight
+        continuityScore = Fitness.getContinuityScore(composition) * continuityWeight
+        return harmonyScore + continuityScore
 
     @staticmethod
     def getHarmonyScore(composition):
@@ -21,4 +24,13 @@ class Fitness:
          scaleScoreMaj = diffMaj.count(0) / len(diffMaj)
          scaleScoreMin = diffMin.count(0) / len(diffMin)
          return max(scaleScoreMin, scaleScoreMaj)
-
+    
+    @staticmethod
+    def getContinuityScore(composition):
+        sortedComp = composition.getSortedComposition()
+        compDiffs = [0] + [sortedComp.notes[i + 1] - sortedComp.notes[i] for i in range(len(sortedComp.notes) - 1)]
+        meanDifference = sum(compDiffs) / len(compDiffs) 
+        if meanDifference == 0:
+            return 0
+        score =  min((len(Note.supportedNotes) / (meanDifference * len(Note.supportedNotes))), 1)
+        return score
