@@ -2,6 +2,7 @@ from random import randrange, uniform
 from Notes import *
 import numpy as np
 
+# This class encapsualtes functionality to determine the fitness of a composition.
 class Fitness:
 
     @staticmethod

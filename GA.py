@@ -3,6 +3,8 @@ from Composition import *
 from Fitness import *
 from random import randrange, uniform
 
+# This class is the genetic algorithm controller. The only interface function is 'runGA', which inputs
+# the initial composition, number of iterations, and outputs the genetically imporved algorithm.
 class GA:
     def runGA(self, baseTrack, iterations):
         # inital run
