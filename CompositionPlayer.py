@@ -1,6 +1,7 @@
 import simpleaudio as sa
 import numpy as np
 
+# This class is used to audio output a given composition.
 class CompositionPlayer:
 
     @staticmethod

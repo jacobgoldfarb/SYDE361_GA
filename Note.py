@@ -1,4 +1,4 @@
-
+# This class encapsulates a single note in a composition.
 class Note:
     
     supportedNotes = ['A4', 'A4#', 'B4', 'C4', 'C4#', 'D4', 'D4#', 'E4', 'F4', 'F4#', 'G4', 'G4#'

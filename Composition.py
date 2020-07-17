@@ -1,5 +1,6 @@
 
 
+# This class encapsulates a composition of notes.
 class Composition:
     
     def __init__(self, notes):

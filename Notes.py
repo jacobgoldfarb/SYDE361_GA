@@ -1,5 +1,6 @@
 from Note import Note
 
+# This file is used as storage to declare the supported notes for use in the rest of the application.
 baseFreq = 440
 A4 = Note(baseFreq, "A4")
 A4sh = Note(baseFreq * 2 ** (1 / 12), "A4#")
