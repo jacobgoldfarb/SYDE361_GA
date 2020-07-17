@@ -16,7 +16,7 @@ class Fitness:
     @staticmethod
     def getHarmonyScore(composition):
          majorIncrements = [0, 2, 2, 1, 2, 2, 2, 1]
-         minorIncrements = [0, 2, 1, 2, 2, 1, 2, 2]
+         minorIncrements = [0, 2, 2, 1, 2, 2, 2, 1] # only majors for now [0, 2, 1, 2, 2, 1, 2, 2]
          sortedComp = composition.getSortedComposition()
          compDiffs = [0] + [sortedComp.notes[i + 1] - sortedComp.notes[i] for i in range(len(sortedComp.notes) - 1)]
          diffMaj = list(np.subtract(majorIncrements, compDiffs))

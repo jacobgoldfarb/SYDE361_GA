@@ -45,7 +45,7 @@ class Note:
         noteIndex = self.supportedNotes.index(self.letter)
         noteIndex += o
         if len(self.supportedNotes) - 1 < noteIndex:
-            noteIndex = 0
+            noteIndex = noteIndex - len(self.supportedNotes)
         newFreq = self.supportedFreqs[noteIndex]
         newNote = self.supportedNotes[noteIndex]
         return Note(newFreq, newNote)

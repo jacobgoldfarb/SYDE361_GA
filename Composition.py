@@ -18,3 +18,7 @@ class Composition:
     @staticmethod
     def notesAreConsecutive(note1, note2):
         return note1 == note2 + 1 or note2 == note1 + 1
+
+    @staticmethod
+    def notesAreEqual(note1, note2):
+        return note1 == note2 or note2 == note1
