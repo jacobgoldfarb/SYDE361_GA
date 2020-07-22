@@ -1,4 +1,6 @@
 # This class encapsulates a single note in a composition.
+import * from Notes
+
 class Note:
     
     supportedNotes = ['A4', 'A4#', 'B4', 'C4', 'C4#', 'D4', 'D4#', 'E4', 'F4', 'F4#', 'G4', 'G4#'
@@ -34,6 +36,35 @@ class Note:
         self.freq = freq
         self.letter = letter
         self.duration = 1
+
+    @classmethod
+    def fromABC(cls, note):
+        return {
+            'A' : A4,
+            '^A' : A4sh,
+            'B' : B4,
+            'C' : C4,
+            '^C' : C4sh,
+            'D' : D4,
+            '^D' : D4sh,
+            'E' : E4,
+            'F' : F4,
+            '^F' : F4sh,
+            'G' : G4,
+            '^G' : G4sh,
+            'a' : A5,
+            '^a' : A5sh,
+            'b' : B5,
+            'c' : C5,
+            '^c' : C5sh,
+            'd' : D5,
+            '^d' : D5sh,
+            'e' : E5,
+            'f' : F5,
+            '^f' : F5sh,
+            'g' : G5,
+            '^g' : G5sh,
+        }.get(note)
 
     def __eq__(self, other):
         return abs(self.freq - other.freq) < 100
