@@ -5,10 +5,9 @@ from MetricManager import MetricManager
 from GA import GA
 from Notes import *
 
-def run_GA(inputComp):
+def getOutput(inputComp):
 
     converted_notes = strListToNoteList(inputComp)
-    # converted_notes = abcStrListToNoteList(inputComp)
     selectedTrack1 = Composition(converted_notes)
     alteredComp = GA().runGA(selectedTrack1, 400)
 
@@ -16,7 +15,7 @@ def run_GA(inputComp):
     for note in alteredComp.notes:
         outputComp_str.append(str(note.letter))
 
-    return outputComp_str
+    return (outputComp_str, alteredComp.getFitness())
 
 
 def main_sandbox():
