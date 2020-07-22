@@ -13,7 +13,7 @@ def GA_api():
     composition = composition_str.strip('][').split(',')
     final_comp = getOutput(composition) # send in list of note strings
     return {
-        "input": composition_str,
+        "input": composition,
         "output": final_comp[0],
         "output_score": final_comp[1]
     }
