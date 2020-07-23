@@ -48,15 +48,13 @@ class GA:
             parentB = choice(weightedGenerations)
             childANotes = []
             childBNotes = []
-            for j in range(0, len(generation)):
+            for j in range(0, len(generation) // 2):
                 if j % 2 == 0:
-                    childANote = parentA.notes[j]
-                    childBNote = parentB.notes[j]
+                    childANotes += [parentA.notes[j * 2], parentA.notes[j * 2 + 1]]
+                    childBNotes += [parentB.notes[j * 2], parentB.notes[j * 2 + 1]]
                 else:
-                    childANote = parentB.notes[j]
-                    childBNote = parentA.notes[j]
-                childANotes.append(childANote)
-                childBNotes.append(childBNote)
+                    childANotes += [parentB.notes[j * 2], parentB.notes[j * 2 + 1]]
+                    childBNotes += [parentA.notes[j * 2], parentA.notes[j * 2 + 1]]
             crossoveredGeneration.append(Composition(childANotes))
             crossoveredGeneration.append(Composition(childBNotes))
         return crossoveredGeneration
