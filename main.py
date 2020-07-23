@@ -24,3 +24,4 @@ def main_sandbox():
     CompositionPlayer.play(selectedTrack1)
     CompositionPlayer.play(alteredComp)
 
+main_sandbox()
